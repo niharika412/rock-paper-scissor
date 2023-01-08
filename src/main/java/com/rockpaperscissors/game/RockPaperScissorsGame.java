@@ -6,18 +6,26 @@ import com.rockpaperscissors.game.entity.Player;
 import com.rockpaperscissors.game.entity.RPSAction;
 import com.rockpaperscissors.game.entity.User;
 
+import java.util.Scanner;
+
 public class RockPaperScissorsGame {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
         RPSController rpsController = new RPSController();
 
-        User userDetails =rpsController.getUserDetails();
+        rpsController.getUserDetails();
+        String userName = scanner.nextLine();
+        rpsController.getMatchDetails();
+        int totalGames = scanner.nextInt();
+
+        User userDetails = rpsController.setUserDetails(userName,totalGames);
+
         User compDetails = rpsController.getComputerDetails();
 
-        int totalGames = rpsController.gamesRemaining();
-
         while(rpsController.gamesRemaining()>0){
-            RPSAction user =rpsController.getUserAction();
+            rpsController.getUserAction();
+            RPSAction user =rpsController.setUserAction(scanner.nextInt());
 
             RPSAction computer =rpsController.getComputerAction();
 

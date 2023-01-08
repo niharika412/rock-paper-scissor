@@ -8,8 +8,6 @@ import com.rockpaperscissors.game.entity.User;
 import com.rockpaperscissors.game.exceptions.InvalidChoiceException;
 import com.rockpaperscissors.game.service.RandomChoiceService;
 
-import java.util.Scanner;
-
 public class RPSController {
 
     private RPSAction userAction;
@@ -20,14 +18,19 @@ public class RPSController {
     RandomChoiceService randomChoiceService = new RandomChoiceService();
     User user = new User();
     User computer = new User();
-    Scanner scanner = new Scanner(System.in);  // Create a Scanner object
 
-    public User getUserDetails(){
+    public void getUserDetails(){
         System.out.println("Welcome to Rock Paper Scissors Game! \n " +
                 "What is your name? \n");
-        user.setUserName(scanner.nextLine());
+    }
+
+    public void getMatchDetails(){
         System.out.println("How many matches would you like to play today?");
-        totalScore.setTotalNumberOfGamesPlayed(scanner.nextInt());
+    }
+
+    public User setUserDetails(String userName,int totalGamesToPlay){
+        user.setUserName(userName);
+        totalScore.setTotalNumberOfGamesPlayed(totalGamesToPlay);
         return user;
     }
 
@@ -36,13 +39,16 @@ public class RPSController {
         return computer;
     }
 
-    public RPSAction getUserAction() {
+    public void getUserAction() {
         System.out.println("Below are the options to choose from :\n" +
                 "1.Rock\n" +
                 "2.Paper\n" +
                 "3.Scissors");
-        RPSAction userActionTemp = RPSAction.getValue(scanner.nextInt());
-        if(userAction==RPSAction.INVALID){
+    }
+
+    public RPSAction setUserAction(int userAction){
+        RPSAction userActionTemp = RPSAction.getValue(userAction);
+        if(userActionTemp==RPSAction.INVALID){
             throw new InvalidChoiceException("Invalid Choice. Choose one out of (1.Rock,2.Paper,3.Scissors)");
         }
         setUserAction(userActionTemp);

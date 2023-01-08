@@ -2,6 +2,7 @@ package com.rockpaperscissors.game.controller;
 
 import com.rockpaperscissors.game.entity.Player;
 import com.rockpaperscissors.game.entity.RPSAction;
+import com.rockpaperscissors.game.exceptions.InvalidChoiceException;
 import com.rockpaperscissors.game.service.RandomChoiceService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,10 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,6 +22,7 @@ public class RPSControllerTest {
 
     @Mock
     RandomChoiceService randomChoiceService;
+
 
     @Test
     public void getComputerDetailsTest(){
@@ -59,6 +59,21 @@ public class RPSControllerTest {
     @Test
     public void gamesRemainingTest(){
         assertEquals(0,rpsController.gamesRemaining());
+    }
+
+    @Test
+    public void setUserActionTest(){
+        assertEquals(RPSAction.SCISSORS,rpsController.setUserAction(3));
+    }
+
+    @Test
+    public void setUserActionExceptionTest(){
+        assertThrows(InvalidChoiceException.class,()->rpsController.setUserAction(-1));
+    }
+
+    @Test
+    public void setUserDetailsTest(){
+        assertEquals("user",rpsController.setUserDetails("user",3).getUserName());
     }
 
 }

@@ -20,8 +20,12 @@ Below is a simple rough design for the game.
 **To run the application:**
 
 Simply import the application and run the main method from the RockPaperScissorsGame.java class.
+If it does not work, simply compile and install required artifacts using "mvn clean install".
+
 
 The code is unit-tested using Java Junit framework, which is the only external imported plugin used in the project.
+Code coverage is 100% for all classes.
+
 
 The classes are developed in such a way that if requirements change down the line, they can be easily incorporated. 
 For example:
