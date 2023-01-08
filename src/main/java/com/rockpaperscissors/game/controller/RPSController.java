@@ -41,9 +41,9 @@ public class RPSController {
 
     public void getUserAction() {
         System.out.println("Below are the options to choose from :\n" +
-                "1.Rock\n" +
-                "2.Paper\n" +
-                "3.Scissors");
+                "Type 1 for Rock\n" +
+                "Type 2 for Paper\n" +
+                "Type 3 for Scissors");
     }
 
     public RPSAction setUserAction(int userAction){
